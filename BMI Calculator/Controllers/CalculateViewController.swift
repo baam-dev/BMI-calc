@@ -10,7 +10,7 @@ import UIKit
 
 class CalculateViewController: UIViewController {
     
-    var bmiValue = "0.0"
+    var calculatorBrain = CalculatorBrain()
 
     @IBOutlet weak var heightLabel: UILabel!
     @IBOutlet weak var weightLabel: UILabel!
@@ -37,21 +37,27 @@ class CalculateViewController: UIViewController {
         let height = heightSlider.value
         let weight = weightSlider.value
         
-        let bmi = weight / (height * height)
-        bmiValue = String(format: "%.1f", bmi)
-        
-        ////
-        
+        calculatorBrain.calculateBMI(height, weight)
+        // when making a new segue we should have 2 things present:
+        // 1. identifier >> specified at the moment of creating the segue
+        // 2. sender >> who is the initiator of the segue? 
         self.performSegue(withIdentifier: "goToResult", sender: self)
-        
     }
     
+        // this method is a preparation before any navigation, hence this is the main page in this app
+        // when any segue is performed at the main page, this prepare method
+        // will get triggered
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
             if segue.identifier == "goToResult" {
-                
+                // creat a reference to that new viewController that's going to be
+                // initialized when the segue gets performed
+                // You can reach that new viewController through >> .destination
             let destinationVC = segue.destination as! ResultViewController
-            destinationVC.bmiVal = bmiValue
+                destinationVC.bmiVal = calculatorBrain.getBMIValue()
+                destinationVC.advice = calculatorBrain.getAdvice()
+                destinationVC.color = calculatorBrain.getColor()
+                
         }
     }
 }

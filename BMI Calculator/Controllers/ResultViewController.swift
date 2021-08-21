@@ -10,20 +10,25 @@ import UIKit
 
 class ResultViewController: UIViewController {
     
+    var bmiVal: String?
+    var advice: String?
+    var color: UIColor?
     
-    var bmiVal : String?
     
     @IBOutlet weak var bmiLabel: UILabel!
     @IBOutlet weak var adviceLabel: UILabel!
     
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         bmiLabel.text = bmiVal
+        adviceLabel.text = advice
+        view.backgroundColor = color
     }
     
     @IBAction func recalcPressed(_ sender: UIButton) {
+        // simply dismiss the current viewController
         dismiss(animated: true, completion: nil)
     }
     
