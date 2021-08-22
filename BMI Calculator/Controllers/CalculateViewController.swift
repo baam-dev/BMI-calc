@@ -38,7 +38,7 @@ class CalculateViewController: UIViewController {
         let weight = weightSlider.value
         
         calculatorBrain.calculateBMI(height, weight)
-        // when making a new segue we should have 2 things present:
+        
         // 1. identifier >> specified at the moment of creating the segue
         // 2. sender >> who is the initiator of the segue? 
         self.performSegue(withIdentifier: "goToResult", sender: self)
