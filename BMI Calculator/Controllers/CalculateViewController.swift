@@ -43,10 +43,7 @@ class CalculateViewController: UIViewController {
         // 2. sender >> who is the initiator of the segue? 
         self.performSegue(withIdentifier: "goToResult", sender: self)
     }
-    
-        // this method is a preparation before any navigation, hence this is the main page in this app
-        // when any segue is performed at the main page, this prepare method
-        // will get triggered
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
             if segue.identifier == "goToResult" {
